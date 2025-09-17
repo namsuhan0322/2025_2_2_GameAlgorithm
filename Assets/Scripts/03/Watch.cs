@@ -27,8 +27,8 @@ public class Watch : MonoBehaviour
         sw = new Stopwatch();
 
         _data1 = GenerateRandomArray(10000);
-        _data2 = GenerateRandomArray(10000);
-        _data3 = GenerateRandomArray(10000);
+        _data2 = (int[])_data1.Clone();
+        _data3 = (int[])_data1.Clone();
 
         _selectionSortTest = GetComponent<SelectionSortTest>();
         _bubbleSortTest = GetComponent<BubbleSortTest>();
