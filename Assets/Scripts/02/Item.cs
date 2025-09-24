@@ -8,6 +8,7 @@ public class Item
 {
     public string itemName;
     public int quantity;
+    public GameObject itemObject;
 
     public Item(string name, int qty = 1)
     {
