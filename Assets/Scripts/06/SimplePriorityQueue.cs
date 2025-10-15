@@ -66,7 +66,7 @@ public class SimplePriorityQueue<T>
             if (left <= last && heap[left].priority < heap[smallest].priority)
                 smallest = left;
             // 오른쪽 자식이 존재하고, 현재 smallest보다 우선순위가 더 높으면 smallest 갱신
-            else if (right <= last && heap[right].priority < heap[smallest].priority)   
+            if (right <= last && heap[right].priority < heap[smallest].priority)   
                 smallest = right;
 
             // smallest 와 인덱스가 같으면 멈춤
