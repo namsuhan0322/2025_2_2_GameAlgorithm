@@ -319,7 +319,7 @@ GameObject:
   - component: {fileID: 1800306562}
   - component: {fileID: 1800306563}
   m_Layer: 0
-  m_Name: MiniGame
+  m_Name: TrunManager
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -349,7 +349,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1800306561}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b54afbe2b44f4a946a59c072249c1413, type: 3}
+  m_Script: {fileID: 11500000, guid: 31883f2baa1797d449b02a8f77e78e8d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1660057539 &9223372036854775807
