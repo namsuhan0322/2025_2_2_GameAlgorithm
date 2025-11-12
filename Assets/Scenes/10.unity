@@ -166,8 +166,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f58487fdf6a7bbd42a89ba887fd128de, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  x: 5
-  y: 5
+  mapWidth: 21
+  mapHeight: 21
+  wallPercentage: 40
+  wallPrefab: {fileID: 2351859621540428920, guid: 5c5f3b184eadece458bd33f38200057c, type: 3}
+  pathPrefab: {fileID: 2351859621540428920, guid: d8a0bee3bdb38324084d355bdfd011d9, type: 3}
+  solutionPrefab: {fileID: 2351859621540428920, guid: 1f773e70490937b4b85daf68488b3249, type: 3}
 --- !u!1 &593028671
 GameObject:
   m_ObjectHideFlags: 0
