@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Maze : MonoBehaviour
+public class MazeDFS : MonoBehaviour
 {
     public int mapWidth = 21;
     public int mapHeight = 21;
