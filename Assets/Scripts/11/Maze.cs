@@ -19,6 +19,7 @@ public class Maze : MonoBehaviour
     private int[,] map;
     private bool[,] visited;
     private List<Vector2Int> solutionPath;
+    private List<Vector2Int> maxDepthCells;
     private Transform mapContainer;
 
     private Vector2Int startPos;
@@ -127,6 +128,8 @@ public class Maze : MonoBehaviour
 
         Queue<Vector2Int> q = new Queue<Vector2Int>();
         q.Enqueue(startPos);
+        int[,] depth = new int[w, h];
+        depth[startPos.x, startPos.y] = 0;
         visited[startPos.x, startPos.y] = true;
 
         while (q.Count > 0)
@@ -135,10 +138,7 @@ public class Maze : MonoBehaviour
 
             // 목표 도착
             if (cur == goalPos)
-            {
                 Debug.Log("BFS : Goal 도착!");
-                return ReconstructPath();
-            }
 
             foreach (var d in dirs)
             {
@@ -151,12 +151,37 @@ public class Maze : MonoBehaviour
 
                 visited[nx, ny] = true;
                 parent[nx, ny] = cur;
+                depth[nx, ny] = depth[cur.x, cur.y] + 1;
                 q.Enqueue(new Vector2Int(nx, ny));
             }
         }
 
-        Debug.Log("BFS: 경로 없음");
-        return null;
+        maxDepthCells = new List<Vector2Int>();
+
+        // 최대 depth 찾기
+        int maxDepth = 0;
+        for (int x = 0; x < w; x++)
+        {
+            for (int y = 0; y < h; y++)
+            {
+                if (visited[x, y] && depth[x, y] > maxDepth)
+                    maxDepth = depth[x, y];
+            }             
+        }
+
+        // 최대 depth를 가진 모든 좌표 저장
+        for (int x = 0; x < w; x++)
+        {
+            for (int y = 0; y < h; y++)
+            {
+                if (visited[x, y] && depth[x, y] == maxDepth)
+                    maxDepthCells.Add(new Vector2Int(x, y));
+            }                
+        }           
+
+        Debug.Log($"최대 depth = {maxDepth}, count = {maxDepthCells.Count}");
+
+        return ReconstructPath();
     }
 
     bool IsBounds(int x, int y)
@@ -206,6 +231,16 @@ public class Maze : MonoBehaviour
                 {
                     Instantiate(wallPrefab, pos + Vector3.up * 0.5f, Quaternion.identity, mapContainer);
                 }
+            }
+        }
+
+        // depth 생성
+        if (maxDepthCells != null)
+        {
+            foreach (var cell in maxDepthCells)
+            {
+                Vector3 pos = new Vector3(cell.x, 0.6f, cell.y);
+                Instantiate(depthPrefab, pos, Quaternion.identity, mapContainer);
             }
         }
 
